@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
 
+    public GameObject secondLevel;
+    public GameObject door;
+
     private Rigidbody rb;
     private int count;
     private float movementX;
@@ -22,6 +25,7 @@ public class PlayerController : MonoBehaviour
         count = 0;
         SetCountText();
         winTextObject.SetActive(false);
+        secondLevel.SetActive(false);
     }
 
     void OnMove(InputValue movementValue)
@@ -34,7 +38,12 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-        if(count >= 10)
+        if(count == 10)
+        {
+            //winTextObject.SetActive(true);
+            secondLevel.SetActive(true);
+            door.SetActive(false);
+        } else if(count == 20)
         {
             winTextObject.SetActive(true);
         }
